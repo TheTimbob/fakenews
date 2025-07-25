@@ -1,5 +1,5 @@
 from generate import create_article
-from scrape import get_rss_feed_entries
+from scrape import evaluate_title, get_rss_feed_entries
 
 
 def main():
@@ -9,12 +9,15 @@ def main():
         exit(1)
     
     for feed in feeds:
-        article_header = feed.title if hasattr(feed, 'title') else "Default Article Header"
-        generate = input(f"Generate Article (Y/N)? Article Title: {article_header}\n")
+        title = feed.title if hasattr(feed, 'title') else "Default Article Header"
+        suitable, reason = evaluate_title(title)
 
-        if generate.lower() in ['y', 'yes']:
-            print(f"Creating article for: {article_header}")
-            article = create_article(article_header)
+        print(f"\nsuitable: {suitable}")
+        print(f"Reason: {reason}\n")
+
+        if suitable:
+            print(f"Creating article for: {title}")
+            article = create_article(title)
             print(article)
             exit(0)
 

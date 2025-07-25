@@ -2,5 +2,9 @@
 __pycache__/
 .env
 
-# Prompts and instructions
-prompts
+# Prompts, instructions, and database
+prompts/*
+database/*
+
+# Keep the directories
+!.gitkeep

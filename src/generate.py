@@ -5,19 +5,21 @@ from openai import OpenAI
 
 load_dotenv()
 
+PROMPT_FILE = 'prompts/inputs.json'
+ARTICLE_INSTRUCTIONS_FILE = 'prompts/article-instructions.txt'
 API_KEY = os.getenv("API_KEY")
 client = OpenAI(api_key=API_KEY)
 
 
 def get_prompt():
-    with open('prompts/inputs.json', 'r') as file:
+    with open(PROMPT_FILE, 'r') as file:
         data = json.load(file)
         return data.get('5')
     return False
 
 
 def get_instructions():
-    with open('prompts/instructions.txt', 'r') as file:
+    with open(ARTICLE_INSTRUCTIONS_FILE, 'r') as file:
         return file.read()
     return False
 
