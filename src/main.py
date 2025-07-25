@@ -1,3 +1,4 @@
+from database import store_title, title_exists
 from generate import create_article
 from scrape import evaluate_title, get_rss_feed_entries
 
@@ -10,7 +11,13 @@ def main():
     
     for feed in feeds:
         title = feed.title if hasattr(feed, 'title') else "Default Article Header"
+
+        if title_exists(title):
+            print(f"Title '{title}' already exists in the database. Skipping.")
+            continue
+
         suitable, reason = evaluate_title(title)
+        store_title(title, suitable, reason)
 
         print(f"\nsuitable: {suitable}")
         print(f"Reason: {reason}\n")
