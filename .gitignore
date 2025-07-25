@@ -1,1 +1,6 @@
+#Python/OS
+__pycache__/
 .env
+
+# Prompts and instructions
+prompts
