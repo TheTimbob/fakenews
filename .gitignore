@@ -5,6 +5,7 @@ __pycache__/
 # Prompts, instructions, and database
 prompts/*
 database/*
+images/*
 
 # Keep the directories
 !.gitkeep
