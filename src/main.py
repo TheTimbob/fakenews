@@ -1,5 +1,5 @@
 from database import store_title, title_exists
-from generate import create_article
+from generate import create_article, create_image, download_image
 from scrape import evaluate_title, get_rss_feed_entries
 
 
@@ -19,13 +19,17 @@ def main():
         suitable, reason = evaluate_title(title)
         store_title(title, suitable, reason)
 
-        print(f"\nsuitable: {suitable}")
+        print(f"Evaluating title: {title}")
+        print(f"\nSuitable: {suitable}")
         print(f"Reason: {reason}\n")
 
         if suitable:
-            print(f"Creating article for: {title}")
             article = create_article(title)
             print(article)
+
+            image_url = create_image(title)
+            image_filename = f"{title[:25].lower().replace(' ', '_')}.png"
+            download_image(image_url, image_filename)
             exit(0)
 
     print("No articles created. Exiting.")
