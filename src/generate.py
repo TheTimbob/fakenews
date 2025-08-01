@@ -27,6 +27,7 @@ def get_article_instructions():
         return file.read()
     return False
 
+
 def get_image_instructions():
     with open('prompts/image-instructions.txt', 'r') as file:
         return file.read()
@@ -79,3 +80,4 @@ def download_image(image_url, filename):
         print(f"Image saved as {filename}\n")
     else:
         print("Failed to download image.\n")
+
